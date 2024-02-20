@@ -16,18 +16,28 @@
             <div class="card-body px-0 pt-0 pb-2">
               <div class="table-responsive p-0">
                 <div class="card border-1 m-3 pt-3">    
-                    <form action="" method="post">
+                    <form action="{{ route('menus.store') }}" method="post" enctype="multipart/form-data" id="frmMenu">
+                      @csrf
                         <div class="mb-3 ms-3 me-3">
                             <label for="menu" class="form-label">Menu</label>
                             <input type="text" id="menu" name="menu" class="form-control" placeholder="Menu" aria-label="Menu">
                         </div>
-                        <div class="ms-3 me-3">
+                        <div class="mb-3 ms-3 me-3">
+                          <label for="idjenis" class="form-label">Category's Name</label>
+                          <select class="form-select" name="idjenis" id="idjenis">
+                            <option selected>Open this select menu</option>
+                            @foreach ($jenis as $dt)
+                            <option value="{{$dt->idjenis }}">{{$dt->jenis}}</option>
+                            @endforeach
+                          </select>
+                        </div>
+                        <!-- <div class="ms-3 me-3">
                             <label for="jenis" class="form-label">Category's Name</label>
                             <div class="input-group">
                                 <input style="height: 42px;border-radius: 10px 0 0 10px !important;" id="jenis" name="jenis" type="text" class="form-control" placeholder="Category's Name" aria-label="Category's Name" aria-describedby="button-addon2">
                                 <button class="btn bg-gradient-warning" type="button" id="find-category">Find</button>
                             </div>
-                        </div>
+                        </div> -->
                         <div class="mb-3 ms-3 me-3">
                             <label for="price" class="form-label">Price</label>
                             <input type="number" id="price" name="price" class="form-control" placeholder="Price" aria-label="Price">
@@ -37,23 +47,27 @@
                             <input type="number" id="stock" name="stock" class="form-control" placeholder="Stock" aria-label="Stock">
                         </div>
                         <div class="mb-3 ms-3 me-3">
-                            <label for="photo1" class="form-label">First Photo</label>
-                            <input type="file" id="photo1" name="photo1" class="form-control" placeholder="First Photo" aria-label="First Photo">
+                            <label for="photo1" class="form-label">First Image</label>
+                            <input type="file" id="foto1" name="foto1" class="form-control" placeholder="First Photo" aria-label="First Photo">
                         </div>
                         <div class="mb-3 ms-3 me-3">
-                            <label for="photo2" class="form-label">Second Photo</label>
-                            <input type="file" id="photo2" name="photo2" class="form-control" placeholder="Second Photo" aria-label="Second Photo">
+                            <label for="photo2" class="form-label">Second Image</label>
+                            <input type="file" id="foto2" name="foto2" class="form-control" placeholder="Second Photo" aria-label="Second Photo">
                         </div>
                         <div class="mb-3 ms-3 me-3">
-                            <label for="photo3" class="form-label">Third Photo</label>
-                            <input type="file" id="photo3" name="photo3" class="form-control" placeholder="Third Photo" aria-label="Third Photo">
+                            <label for="photo3" class="form-label">Third Image</label>
+                            <input type="file" id="foto3" name="foto3" class="form-control" placeholder="Third Photo" aria-label="Third Photo">
+                        </div>
+                        <div class="mb-3 ms-3 me-3">
+                            <label for="desc" class="form-label">Description</label>
+                            <input type="text" id="deskripsi" name="deskripsi" class="form-control" placeholder="Deskripsi" aria-label="Deskripsi">
                         </div>
                         <div class="row ms-3 me-3 d-flex justify-content-end">
                             <div class="col-3">
-                                <a href="{{ route('categories.index') }}" type="button" class="btn bg-gradient-secondary w-100">Cancel</a>
+                                <a href="{{ route('menus.index') }}" type="button" class="btn bg-gradient-secondary w-100">Cancel</a>
                             </div>
                             <div class="col-3">
-                                <button type="button" class="btn bg-gradient-primary w-100">Save</button>
+                                <button type="button" class="btn bg-gradient-primary w-100" id="save">Save</button>
                             </div>
                         </div>
                     </form>
@@ -99,4 +113,35 @@
         </div>
       </footer>
     </div>
+
+    <script>
+      const btnSave = document.getElementById('save')
+      const form = document.getElementById('frmMenu')
+      const menu = document.getElementById('menu')
+      const cat = document.getElementById('idjenis')
+      const price = document.getElementById('price')
+      const img = document.getElementById('foto1')
+      const desc = document.getElementById('deskripsi')
+
+      function save(){
+        if(menu.value === ""){
+          menu.focus()
+          swal("Incomplete Data", "Menu's name is required!", "error")
+        }else if(cat.value === ""){
+          cat.focus()
+          swal("Incomplete Data", "Category must be selected!", "error")
+        }else if(price.value === ""){
+          price.focus()
+          swal("Incomplete Data", "Price is required!", "error")
+        }else if(img.value === ""){
+          img.focus()
+          swal("Incomplete Data", "Image is required!", "error")
+        }else if(desc.value === ""){
+          desc.focus()
+          swal("Incomplete Data", "Description is required!", "error")
+        }else{
+          form.submit();
+        }
+      }
+    </script>
 @endsection

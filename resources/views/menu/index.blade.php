@@ -20,28 +20,57 @@
                   <thead>
                     <tr>
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">No</th>
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Menu</th>
                       <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Category</th>
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Price</th>
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Stock</th>
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">First Image</th>
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Second Image</th>
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Third Image</th>
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Description</th>
                       <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Action</th>
                       <!-- <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Employed</th> -->
                       <th class="text-secondary opacity-7"></th>
                     </tr>
                   </thead>
                   <tbody>
+                  @foreach ($menu as $idx => $data)
                     <tr>
                       <td>
                         <div class="d-flex px-2 py-1">
-                          1.
+                          {{ $idx+1 . ". "}}
                         </div>
                       </td>
                       <td>
-                        Sayuran
+                        {{$data->menu}}
+                      </td>
+                      <td>
+                        {{$data->jenis}}
+                      </td>
+                      <td>
+                        {{$data->harga}}
+                      </td>
+                      <td>
+                        {{$data->stok}}
+                      </td>
+                      <td>
+                        <img src="storage/{{$data->foto1}}" alt="{{$data->foto1}}" class="img-thumbnail">
+                      </td>
+                      <td>
+                        <img src="storage/{{$data->foto2}}" alt="{{$data->foto2}}" class="img-thumbnail">
+                      </td>
+                      <td>
+                        <img src="storage/{{$data->foto3}}" alt="{{$data->foto3}}" class="img-thumbnail">
+                      </td>
+                      <td>
+                        {{$data->deskripsi}}
                       </td>
                       <td class="align-middle text-center text-sm">
                         <span class="badge badge-sm bg-gradient-success">Edit</span>
                         <span class="badge badge-sm bg-gradient-danger">Delete</span>
                       </td>
                     </tr>
-                    
+                    @endforeach
                   </tbody>
                 </table>
               </div>
