@@ -123,6 +123,8 @@
       const img = document.getElementById('foto1')
       const desc = document.getElementById('deskripsi')
 
+      let pesan='';
+
       function save(){
         if(menu.value === ""){
           menu.focus()
