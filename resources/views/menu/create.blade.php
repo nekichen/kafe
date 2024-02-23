@@ -60,7 +60,7 @@
                         </div>
                         <div class="mb-3 ms-3 me-3">
                             <label for="desc" class="form-label">Description</label>
-                            <input type="text" id="deskripsi" name="deskripsi" class="form-control" placeholder="Deskripsi" aria-label="Deskripsi">
+                            <input type="file" id="deskripsi" name="deskripsi" class="form-control" placeholder="Deskripsi" aria-label="Deskripsi">
                         </div>
                         <div class="row ms-3 me-3 d-flex justify-content-end">
                             <div class="col-3">
@@ -123,8 +123,6 @@
       const img = document.getElementById('foto1')
       const desc = document.getElementById('deskripsi')
 
-      let pesan='';
-
       function save(){
         if(menu.value === ""){
           menu.focus()
@@ -138,9 +136,6 @@
         }else if(img.value === ""){
           img.focus()
           swal("Incomplete Data", "Image is required!", "error")
-        }else if(desc.value === ""){
-          desc.focus()
-          swal("Incomplete Data", "Description is required!", "error")
         }else{
           form.submit();
         }
