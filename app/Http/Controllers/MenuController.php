@@ -41,6 +41,15 @@ class MenuController extends Controller
     public function store(Request $request)
     {
         //
+        $data = $request->validate([
+            'menu', 'idjenis', 'harga', 'deskripsi'
+        ]);
+        // DB::table('menu')->insert([
+        //     'menu' => $request->menu,
+        //     'idjenis' => $request->idjenis,
+        //     'harga' => $request->harga
+        // ]);
+        dd($request['foto1']->store('Products/Photos'));
     }
 
     /**

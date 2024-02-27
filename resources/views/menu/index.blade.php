@@ -79,6 +79,24 @@
         </div>
       </div>
 
+    <!-- <input type="hidden" id="status" class="form-control" value="@isset($status){{$status}}@endisset">
+    <input type="hidden" id="pesan" class="form-control" value="@isset($pesan){{$pesan}}@endisset">
+    
+    <script>
+      const body = document.getElementById('master')
+      const status = document.getElementById('status')
+      const pesan = document.getElementById('pesan')
+
+      function swal(){
+        if(status.value === 'save'){
+          swal("Good Job!", pesan.value, "success")
+        }
+      }
+      body.onload = function(){
+        swal()
+      }
+    </script> -->
+
 <!-- Tutup table -->
 
       <footer class="footer pt-3  ">
@@ -114,4 +132,5 @@
         </div>
       </footer>
     </div>
+    
 @endsection

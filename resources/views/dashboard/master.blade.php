@@ -40,6 +40,15 @@
   <!-- Sweet Alert -->
   <script src="https://lipis.github.io/bootstrap-sweetalert/dist/sweetalert.js"></script>
   <link rel="stylesheet" href="https://lipis.github.io/bootstrap-sweetalert/dist/sweetalert.css">
+
+  <script>
+        function angka(e){
+            let keyCode = e.keyCode ? e.keyCode : e.which;
+            if ((keyCode < 48 || keyCode > 57) && keyCode !== 46 && keyCode !== 44) {
+                e.preventDefault();
+            }
+        }
+    </script>
 </head>
 
 <body class="g-sidenav-show  bg-gray-100" id="master">

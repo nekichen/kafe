@@ -10,8 +10,7 @@ class Menu extends Model
     use HasFactory;
     protected $fillable = [
         'menu',
-        'idenis',
-        'harga',
+        'idjenis',
         'stok',
         'foto1',
         'foto2',

@@ -25,9 +25,9 @@
                         <div class="mb-3 ms-3 me-3">
                           <label for="idjenis" class="form-label">Category's Name</label>
                           <select class="form-select" name="idjenis" id="idjenis">
-                            <option selected>Open this select menu</option>
+                            <option value="selected">Open this select menu</option>
                             @foreach ($jenis as $dt)
-                            <option value="{{$dt->idjenis }}">{{$dt->jenis}}</option>
+                            <option value="{{$dt->idjenis}}">{{$dt->jenis}}</option>
                             @endforeach
                           </select>
                         </div>
@@ -40,11 +40,11 @@
                         </div> -->
                         <div class="mb-3 ms-3 me-3">
                             <label for="price" class="form-label">Price</label>
-                            <input type="number" id="price" name="price" class="form-control" placeholder="Price" aria-label="Price">
+                            <input type="text" id="price" name="price" class="form-control" placeholder="Price" aria-label="Price">
                         </div>
                         <div class="mb-3 ms-3 me-3">
                             <label for="stock" class="form-label">Stock</label>
-                            <input type="number" id="stock" name="stock" class="form-control" placeholder="Stock" aria-label="Stock">
+                            <input type="number" id="stock" name="stock" class="form-control" placeholder="Stock" aria-label="Stock" disabled>
                         </div>
                         <div class="mb-3 ms-3 me-3">
                             <label for="photo1" class="form-label">First Image</label>
@@ -127,7 +127,7 @@
         if(menu.value === ""){
           menu.focus()
           swal("Incomplete Data", "Menu's name is required!", "error")
-        }else if(cat.value === ""){
+        }else if(cat.value === "selected"){
           cat.focus()
           swal("Incomplete Data", "Category must be selected!", "error")
         }else if(price.value === ""){
@@ -139,6 +139,14 @@
         }else{
           form.submit();
         }
+      }
+
+      btnSave.onclick = function(){
+        save()
+      }
+
+      price.onkeypress = function(e){
+                angka(e);
       }
     </script>
 @endsection
