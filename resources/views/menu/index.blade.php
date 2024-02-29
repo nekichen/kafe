@@ -79,7 +79,7 @@
         </div>
       </div>
 
-    <!-- <input type="hidden" id="status" class="form-control" value="@isset($status){{$status}}@endisset">
+    <input type="hidden" id="status" class="form-control" value="@isset($status){{$status}}@endisset">
     <input type="hidden" id="pesan" class="form-control" value="@isset($pesan){{$pesan}}@endisset">
     
     <script>
@@ -95,7 +95,7 @@
       body.onload = function(){
         swal()
       }
-    </script> -->
+    </script>
 
 <!-- Tutup table -->
 

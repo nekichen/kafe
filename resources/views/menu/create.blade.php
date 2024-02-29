@@ -20,14 +20,17 @@
                       @csrf
                         <div class="mb-3 ms-3 me-3">
                             <label for="menu" class="form-label">Menu</label>
-                            <input type="text" id="menu" name="menu" class="form-control" placeholder="Menu" aria-label="Menu">
+                            <input type="text" value="{{ $menu ?? '' }}" id="menu" name="menu" class="form-control" placeholder="Menu" aria-label="Menu">
                         </div>
                         <div class="mb-3 ms-3 me-3">
                           <label for="idjenis" class="form-label">Category's Name</label>
                           <select class="form-select" name="idjenis" id="idjenis">
-                            <option value="selected">Open this select menu</option>
+                            <option @if(isset($idjenis)) selected @endif value="">Open this select menu</option>
                             @foreach ($jenis as $dt)
-                            <option value="{{$dt->idjenis}}">{{$dt->jenis}}</option>
+                            <option value="{{$dt->id}}"
+                            @if (isset($idjenis) and $dt->id == $idjenis) selected @endif>
+                              {{$dt->jenis}}
+                            </option>
                             @endforeach
                           </select>
                         </div>
@@ -40,11 +43,11 @@
                         </div> -->
                         <div class="mb-3 ms-3 me-3">
                             <label for="price" class="form-label">Price</label>
-                            <input type="text" id="price" name="price" class="form-control" placeholder="Price" aria-label="Price">
+                            <input type="text" id="harga" name="harga" class="form-control" placeholder="Price" aria-label="Price">
                         </div>
                         <div class="mb-3 ms-3 me-3">
                             <label for="stock" class="form-label">Stock</label>
-                            <input type="number" id="stock" name="stock" class="form-control" placeholder="Stock" aria-label="Stock" disabled>
+                            <input type="number" id="stok" name="stok" class="form-control" placeholder="0" aria-label="Stock" disabled>
                         </div>
                         <div class="mb-3 ms-3 me-3">
                             <label for="photo1" class="form-label">First Image</label>
@@ -60,7 +63,7 @@
                         </div>
                         <div class="mb-3 ms-3 me-3">
                             <label for="desc" class="form-label">Description</label>
-                            <input type="file" id="deskripsi" name="deskripsi" class="form-control" placeholder="Deskripsi" aria-label="Deskripsi">
+                            <input type="text" id="deskripsi" name="deskripsi" class="form-control" placeholder="Deskripsi" aria-label="Deskripsi">
                         </div>
                         <div class="row ms-3 me-3 d-flex justify-content-end">
                             <div class="col-3">
@@ -114,20 +117,25 @@
       </footer>
     </div>
 
+    <div id="status" style="visibility: false">{{$status ?? ''}}</div>
+
     <script>
       const btnSave = document.getElementById('save')
       const form = document.getElementById('frmMenu')
+      const body = document.getElementById('master')
       const menu = document.getElementById('menu')
       const cat = document.getElementById('idjenis')
-      const price = document.getElementById('price')
+      const price = document.getElementById('harga')
       const img = document.getElementById('foto1')
       const desc = document.getElementById('deskripsi')
+
+      let status = document.getElementById('status')
 
       function save(){
         if(menu.value === ""){
           menu.focus()
           swal("Incomplete Data", "Menu's name is required!", "error")
-        }else if(cat.value === "selected"){
+        }else if(cat.value === ""){
           cat.focus()
           swal("Incomplete Data", "Category must be selected!", "error")
         }else if(price.value === ""){
@@ -141,12 +149,23 @@
         }
       }
 
+      function check(){
+        if(status.innerHTML === 'duplicate'){
+          menu.focus()
+          swal("Duplicate Data", "Menu named " + menu.value + " already exists!", "error")
+        }
+      }
+
       btnSave.onclick = function(){
         save()
       }
 
       price.onkeypress = function(e){
-                angka(e);
+        angka(e);
+      } 
+
+      body.onload = function(){
+        check()
       }
     </script>
 @endsection
