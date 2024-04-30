@@ -41,12 +41,24 @@
                           {{ $idx+1 . ". "}}
                         </div>
                       </td>
+                      @if (strlen($data->menu) > 18)
+                        <td data-bs-toggle="tooltip" data-bs-placement="right" data-bs-custom-class="custom-tooltip" data-bs-title="{{ $data->menu }}" style="cursor: help;">
+                          {{ substr($data->menu, 0, 18) . "..." }}
+                        </td>
+                      @else
                       <td>
                         {{$data->menu}}
                       </td>
+                      @endif
+                      @if (strlen($data->jenis) > 5)
+                        <td data-bs-toggle="tooltip" data-bs-placement="right" data-bs-custom-class="custom-tooltip" data-bs-title="{{ $data->jenis }}" style="cursor: help">
+                          {{ substr($data->jenis, 0, 5) . "..." }}
+                        </td>
+                      @else
                       <td>
                         {{$data->jenis}}
                       </td>
+                      @endif
                       <td>
                         {{$data->harga}}
                       </td>
@@ -54,17 +66,23 @@
                         {{$data->stok}}
                       </td>
                       <td>
-                        <img src="storage/{{$data->foto1}}" alt="{{$data->foto1}}" class="img-thumbnail">
+                        <img src="storage/{{$data->foto1}}" alt="{{$data->foto1}}" class="w-30 img-thumbnail zoom" data-bs-toggle="modal" data-bs-target="#foto1_{{$data->id}}">
                       </td>
                       <td>
-                        <img src="storage/{{$data->foto2}}" alt="{{$data->foto2}}" class="img-thumbnail">
+                        <img src="storage/{{$data->foto2}}" alt="{{$data->foto2}}" class="w-30 img-thumbnail zoom" data-bs-toggle="modal" data-bs-target="#foto2_{{$data->id}}">
                       </td>
                       <td>
-                        <img src="storage/{{$data->foto3}}" alt="{{$data->foto3}}" class="img-thumbnail">
+                        <img src="storage/{{$data->foto3}}" alt="{{$data->foto3}}" class="w-30 img-thumbnail zoom" data-bs-toggle="modal" data-bs-target="#foto3_{{$data->id}}">
                       </td>
+                      @if (strlen($data->deskripsi) > 18)
+                        <td data-bs-toggle="tooltip" data-bs-placement="right" data-bs-custom-class="custom-tooltip" data-bs-title="{{ $data->deskripsi }}" style="cursor: help;">
+                          {{ substr($data->deskripsi, 0, 18) . "..." }}
+                        </td>
+                      @else
                       <td>
                         {{$data->deskripsi}}
                       </td>
+                      @endif
                       <td class="align-middle text-center text-sm">
                         <span class="badge badge-sm bg-gradient-success">Edit</span>
                         <span class="badge badge-sm bg-gradient-danger">Delete</span>
