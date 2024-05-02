@@ -41,6 +41,11 @@
     <script src="https://lipis.github.io/bootstrap-sweetalert/dist/sweetalert.js"></script>
     <link rel="stylesheet" href="https://lipis.github.io/bootstrap-sweetalert/dist/sweetalert.css">
 
+    {{-- cdn data table --}}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.1/css/dataTables.bootstrap5.min.css">
+    
+
     <script>
         function angka(e) {
             let keyCode = e.keyCode ? e.keyCode : e.which;
@@ -49,6 +54,21 @@
             }
         }
     </script>
+    <style>
+        .custom-tooltip {
+            --bs-tooltip-bg: var(--bs-primary);
+        }
+
+        .zoom {
+            transition: transform .3s;
+            /* Animation */
+        }
+
+        .zoom:hover {
+            cursor: zoom-in;
+            transform: scale(4);
+        }
+    </style>
 </head>
 
 <body class="g-sidenav-show  bg-gray-100" id="master">
@@ -332,6 +352,14 @@
         const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
     </script>
     <script src="../assets/js/soft-ui-dashboard.min.js?v=1.0.7"></script>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.datatables.net/2.0.2/js/dataTables.js"></script>
+    <script src="https://cdn.datatables.net/2.0.2/js/dataTables.bootstrap5.js"></script>
+    <script>
+        new DataTables('#data');
+    </script>
 </body>
 
 </html>

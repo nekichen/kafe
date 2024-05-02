@@ -102,13 +102,13 @@
       const status = document.getElementById('status')
       const pesan = document.getElementById('pesan')
 
-      function swal(){
+      function save(){
         if(status.value === 'save'){
           swal("Good Job!", pesan.value, "success")
         }
       }
       body.onload = function(){
-        swal()
+        save()
       }
     </script>
 @endsection
